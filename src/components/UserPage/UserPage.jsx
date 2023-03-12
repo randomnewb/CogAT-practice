@@ -1,15 +1,40 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const questions = [
   {
     id: 1,
-    questionText: "What is the capital of France?",
+    questionText: "Which shape is a square?",
     answerOptions: [
-      { id: 1, answerText: "New York", isCorrect: false },
-      { id: 2, answerText: "London", isCorrect: false },
-      { id: 3, answerText: "Paris", isCorrect: true },
-      { id: 4, answerText: "Dublin", isCorrect: false },
+      {
+        id: 1,
+        answerText: "Diamond",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678655473/images/diamonds_q445ri.png",
+      },
+      {
+        id: 2,
+        answerText: "Heart",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678655473/images/hearts_1_ze3k7t.png",
+      },
+      {
+        id: 3,
+        answerText: "Square",
+        isCorrect: true,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678655473/images/plain-square_yf7rc6.png",
+      },
+      {
+        id: 4,
+        answerText: "Circle",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678655473/images/plain-circle_troipq.png",
+      },
     ],
   },
   {
@@ -45,6 +70,7 @@ const questions = [
 ];
 
 function UserPage() {
+  const history = useHistory();
   const user = useSelector((store) => store.user);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
@@ -69,7 +95,7 @@ function UserPage() {
         <h2>Welcome, {user.username}!</h2>
       </div>
       <div className="container">
-        <h3>Quiz</h3>
+        <h3>Quick Quiz</h3>
       </div>
       <div className="container">
         {showScore ? (
@@ -88,13 +114,22 @@ function UserPage() {
             </div>
             <div className="answer-section">
               {questions[currentQuestion].answerOptions.map((answerOption) => (
-                <button
-                  onClick={() =>
-                    handleAnswerOptionClick(answerOption.isCorrect)
-                  }
-                >
-                  {answerOption.answerText}
-                </button>
+                <>
+                  <br />
+                  <img
+                    onMouseOver={(e) =>
+                      (e.currentTarget.style.border = "5px solid red")
+                    }
+                    onMouseOut={(e) => (e.currentTarget.style.border = "")}
+                    src={answerOption.image}
+                    alt={answerOption.answerText}
+                    style={{ width: "100px", height: "100px" }}
+                    key={answerOption.id}
+                    onClick={() =>
+                      handleAnswerOptionClick(answerOption.isCorrect)
+                    }
+                  />
+                </>
               ))}
             </div>
           </>
@@ -107,6 +142,7 @@ function UserPage() {
               setCurrentQuestion(0);
               setShowScore(false);
               setScore(0);
+              history.push("/user");
             }}
           >
             Restart Quiz

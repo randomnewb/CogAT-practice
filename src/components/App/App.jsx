@@ -18,6 +18,7 @@ import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
+import QuizSelect from "../QuizSelect/QuizSelect";
 
 import "./App.css";
 
@@ -56,6 +57,10 @@ function App() {
             exact
             path="/user"
           >
+            <QuizSelect />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/quiz">
             <UserPage />
           </ProtectedRoute>
 
