@@ -39,12 +39,36 @@ const questions = [
   },
   {
     id: 2,
-    questionText: "Who is CEO of Tesla?",
+    questionText: "What food would be the least healthy?",
     answerOptions: [
-      { id: 1, answerText: "Jeff Bezos", isCorrect: false },
-      { id: 2, answerText: "Elon Musk", isCorrect: true },
-      { id: 3, answerText: "Bill Gates", isCorrect: false },
-      { id: 4, answerText: "Tony Stark", isCorrect: false },
+      {
+        id: 1,
+        answerText: "Banana",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678657708/images/banana_1_embzm1.png",
+      },
+      {
+        id: 2,
+        answerText: "Cake",
+        isCorrect: true,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678657708/images/cake-slice_wjpfer.png",
+      },
+      {
+        id: 3,
+        answerText: "Apple",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678657708/images/shiny-apple_1_yud2lx.png",
+      },
+      {
+        id: 4,
+        answerText: "Grapes",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1678657708/images/grapes_1_uxno9k.png",
+      },
     ],
   },
   {
