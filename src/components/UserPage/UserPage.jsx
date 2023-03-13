@@ -99,8 +99,17 @@ function UserPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
+  const [answer, setAnswer] = useState("");
 
-  const handleAnswerOptionClick = (isCorrect) => {
+  const storeAnswer = (id) => {
+    setAnswer(id);
+  };
+
+  const chooseAnswer = () => {
+    const isCorrect = questions[currentQuestion].answerOptions.find(
+      (answerOption) => answerOption.id === answer
+    ).isCorrect;
+
     if (isCorrect) {
       setScore(score + 1);
     }
@@ -115,9 +124,6 @@ function UserPage() {
 
   return (
     <>
-      <div className="container">
-        <h2>Welcome, {user.username}!</h2>
-      </div>
       <div className="container">
         <h3>Quick Quiz</h3>
       </div>
@@ -141,21 +147,52 @@ function UserPage() {
                 <>
                   <br />
                   <img
-                    onMouseOver={(e) =>
-                      (e.currentTarget.style.border = "5px solid red")
-                    }
-                    onMouseOut={(e) => (e.currentTarget.style.border = "")}
+                    onMouseOver={(e) => {
+                      if (e.currentTarget.style.border !== "5px solid green") {
+                        e.currentTarget.style.border = "5px solid red";
+                      }
+                    }}
+                    onMouseOut={(e) => {
+                      const allImages = document.getElementsByTagName("img");
+                      for (let i = 0; i < allImages.length; i++) {
+                        if (allImages[i].style.border !== "5px solid green") {
+                          allImages[i].style.border = "";
+                        }
+                      }
+                    }}
                     src={answerOption.image}
                     alt={answerOption.answerText}
                     style={{ width: "100px", height: "100px" }}
                     key={answerOption.id}
-                    onClick={() =>
-                      handleAnswerOptionClick(answerOption.isCorrect)
-                    }
+                    onClick={(e) => {
+                      storeAnswer(answerOption.id);
+
+                      if (e.currentTarget.style.border !== "5px solid green") {
+                        const allImages = document.getElementsByTagName("img");
+                        for (let i = 0; i < allImages.length; i++) {
+                          allImages[i].style.border = "";
+                        }
+                        e.currentTarget.style.border = "5px solid green";
+                      } else {
+                        e.currentTarget.style.border = "";
+                      }
+                    }}
                   />
                 </>
               ))}
             </div>
+            <button
+              onClick={() => {
+                chooseAnswer();
+
+                const allImages = document.getElementsByTagName("img");
+                for (let i = 0; i < allImages.length; i++) {
+                  allImages[i].style.border = "";
+                }
+              }}
+            >
+              Choose Answer
+            </button>
           </>
         )}
       </div>
