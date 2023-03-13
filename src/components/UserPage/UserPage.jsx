@@ -148,33 +148,36 @@ function UserPage() {
                   <br />
                   <img
                     onMouseOver={(e) => {
-                      if (e.currentTarget.style.border !== "5px solid green") {
-                        e.currentTarget.style.border = "5px solid red";
+                      if (e.target.style.outline !== "green solid 4px") {
+                        e.target.style.outline = "red solid 4px";
                       }
                     }}
                     onMouseOut={(e) => {
-                      const allImages = document.getElementsByTagName("img");
-                      for (let i = 0; i < allImages.length; i++) {
-                        if (allImages[i].style.border !== "5px solid green") {
-                          allImages[i].style.border = "";
-                        }
+                      if (e.target.style.outline !== "green solid 4px") {
+                        e.target.style.outline = "none";
                       }
                     }}
                     src={answerOption.image}
                     alt={answerOption.answerText}
-                    style={{ width: "100px", height: "100px" }}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      outlineOffset: "-4px",
+                    }}
                     key={answerOption.id}
                     onClick={(e) => {
                       storeAnswer(answerOption.id);
+                      e.target.style.outline = "green solid 4px";
 
-                      if (e.currentTarget.style.border !== "5px solid green") {
-                        const allImages = document.getElementsByTagName("img");
-                        for (let i = 0; i < allImages.length; i++) {
-                          allImages[i].style.border = "";
+                      for (
+                        let i = 0;
+                        i < e.target.parentNode.children.length;
+                        i++
+                      ) {
+                        if (e.target.parentNode.children[i] !== e.target) {
+                          e.target.parentNode.children[i].style.outline =
+                            "none";
                         }
-                        e.currentTarget.style.border = "5px solid green";
-                      } else {
-                        e.currentTarget.style.border = "";
                       }
                     }}
                   />
@@ -185,10 +188,19 @@ function UserPage() {
               onClick={() => {
                 chooseAnswer();
 
-                const allImages = document.getElementsByTagName("img");
-                for (let i = 0; i < allImages.length; i++) {
-                  allImages[i].style.border = "";
+                for (
+                  let i = 0;
+                  i <
+                  document.getElementsByClassName("answer-section")[0].children
+                    .length;
+                  i++
+                ) {
+                  document.getElementsByClassName("answer-section")[0].children[
+                    i
+                  ].style.outline = "none";
                 }
+
+                setAnswer("");
               }}
             >
               Choose Answer

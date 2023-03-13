@@ -34,6 +34,15 @@ function QuizSelect() {
           src="https://res.cloudinary.com/dartlv0ee/image/upload/v1678664525/images/fast-forward-button_tqs3us.png"
           alt="Quick Quiz Button"
           style={{ width: "100px", height: "100px" }}
+          // add a border to the image but not around it
+          onMouseOver={(e) => {
+            e.currentTarget.style.outline = "5px solid red";
+            e.currentTarget.style.outlineOffset = "-4px";
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.outline = "";
+            e.currentTarget.style.outlineOffset = "";
+          }}
           onClick={() => {
             confirmQuiz();
           }}
@@ -43,6 +52,14 @@ function QuizSelect() {
           src="https://res.cloudinary.com/dartlv0ee/image/upload/v1678664525/images/gears_1_fgqyqu.png"
           alt="Custom Quiz Button"
           style={{ width: "100px", height: "100px" }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.outline = "5px solid red";
+            e.currentTarget.style.outlineOffset = "-4px";
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.outline = "";
+            e.currentTarget.style.outlineOffset = "";
+          }}
           // onClick={() => {
           //   history.push("/quiz");
           // }}
