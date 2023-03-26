@@ -244,8 +244,25 @@ function UserPage() {
                                 Choose Answer
                             </button>
                         )}
+
                         {answerChosen && (
                             <div className="question-explanation">
+                                {questions[currentQuestion].answerOptions.find(
+                                    (answerOption) => answerOption.id === answer
+                                ).isCorrect ? (
+                                    <div>
+                                        <h3>Great job!</h3>
+                                        <br />
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <h3>
+                                            You almost got the right answer.
+                                        </h3>
+                                        <br />
+                                    </div>
+                                )}
+
                                 {questions[currentQuestion].questionExplanation}
 
                                 <br />
