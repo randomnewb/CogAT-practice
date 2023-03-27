@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+// Change last question's next answer button to "Finish Quiz"
+const changeLastQuestionButton = (questions, currentQuestionIndex) => {
+    if (currentQuestionIndex === questions.length - 1) {
+        return "Finish Quiz";
+    } else {
+        return "Next Question";
+    }
+};
+
 const questions = [
     {
         id: 1,
@@ -94,7 +103,7 @@ const questions = [
 
 function UserPage() {
     const history = useHistory();
-    const user = useSelector((store) => store.user);
+    // const user = useSelector((store) => store.user);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [showScore, setShowScore] = useState(false);
     const [score, setScore] = useState(0);
@@ -128,7 +137,6 @@ function UserPage() {
         setAnswerChosen(false);
     };
 
-    // enable mouse events after the user has viewed the solution
     const enableMouseEvents = () => {
         const answerOptions = document.querySelectorAll(".answerOption");
         answerOptions.forEach((answerOption) => {
@@ -143,12 +151,18 @@ function UserPage() {
         });
     };
 
+    const selectedOutline = {
+        outline: "skyblue solid 4px",
+    };
+
+    const hoverOutline = {
+        outline: "orange solid 4px",
+    };
+
     return (
         <>
             <div className="container">
                 <h3>Quick Quiz</h3>
-            </div>
-            <div className="container">
                 {showScore ? (
                     <div className="score-section">
                         You scored {score} out of {questions.length}
@@ -178,16 +192,16 @@ function UserPage() {
                                             onMouseOver={(e) => {
                                                 if (
                                                     e.target.style.outline !==
-                                                    "green solid 4px"
+                                                    selectedOutline.outline
                                                 ) {
                                                     e.target.style.outline =
-                                                        "red solid 4px";
+                                                        hoverOutline.outline;
                                                 }
                                             }}
                                             onMouseOut={(e) => {
                                                 if (
                                                     e.target.style.outline !==
-                                                    "green solid 4px"
+                                                    selectedOutline.outline
                                                 ) {
                                                     e.target.style.outline =
                                                         "none";
@@ -205,7 +219,7 @@ function UserPage() {
                                             onClick={(e) => {
                                                 storeAnswer(answerOption.id);
                                                 e.target.style.outline =
-                                                    "green solid 4px";
+                                                    selectedOutline.outline;
 
                                                 for (
                                                     let i = 0;
@@ -287,9 +301,7 @@ function UserPage() {
 
                                         setAnswer("");
                                         enableMouseEvents();
-                                    }}>
-                                    Next Question
-                                </button>
+                                    }}></button>
                             </div>
                         )}
                     </>
