@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Dialog, Button } from "@mui/material";
-
-// implement dialog box to confirm quiz selection from materialui
+import {
+    Dialog,
+    DialogTitle,
+    Button,
+    Typography,
+    List,
+    ListItem,
+    ListItemButton,
+} from "@mui/material";
 
 function QuizSelect() {
     const history = useHistory();
@@ -19,18 +25,6 @@ function QuizSelect() {
         setOpen(false);
     };
 
-    // function confirmQuiz() {
-    //     let confirm = window.confirm(
-    //         "Are you sure you want to start the quiz?"
-    //     );
-
-    //     if (confirm) {
-    //         history.push("/quiz");
-    //     } else {
-    //         history.push("/user");
-    //     }
-    // }
-
     const selectedOutline = {
         outline: "skyblue solid 4px",
     };
@@ -42,10 +36,10 @@ function QuizSelect() {
     return (
         <>
             <div className="container">
-                <h2>Welcome, {user.username}!</h2>
+                <Typography variant="h2">Welcome, {user.username}!</Typography>
             </div>
             <div className="container">
-                <h3>Select a Quiz</h3>
+                <Typography variant="h3">Select a Quiz</Typography>
             </div>
             <div className="container">
                 <img
@@ -65,29 +59,57 @@ function QuizSelect() {
                 <Dialog
                     open={open}
                     onClose={handleClose}>
-                    <div>Are you sure you want to start the quiz?</div>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        style={{
-                            margin: "10px",
-                        }}
-                        onClick={() => {
-                            history.push("/quiz");
+                    <DialogTitle>
+                        Are you sure you want to start the quiz?
+                    </DialogTitle>
+                    <List
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
                         }}>
-                        Yes
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        style={{
-                            margin: "10px",
-                        }}
-                        onClick={() => {
-                            history.push("/user");
-                        }}>
-                        No
-                    </Button>
+                        <ListItem
+                            sx={{
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                fullWidth
+                                style={{
+                                    margin: "10px",
+                                }}
+                                onClick={() => {
+                                    history.push("/quiz");
+                                }}>
+                                Yes
+                            </Button>
+                        </ListItem>
+                        <ListItem
+                            sx={{
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                            }}>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                fullWidth
+                                style={{
+                                    margin: "10px",
+                                }}
+                                onClick={() => {
+                                    history.push("/user");
+                                }}>
+                                No
+                            </Button>
+                        </ListItem>
+                    </List>
                 </Dialog>
                 <br />
                 <img
@@ -102,9 +124,6 @@ function QuizSelect() {
                         e.currentTarget.style.outline = "";
                         e.currentTarget.style.outlineOffset = "";
                     }}
-                    // onClick={() => {
-                    //   history.push("/quiz");
-                    // }}
                 />
             </div>
         </>

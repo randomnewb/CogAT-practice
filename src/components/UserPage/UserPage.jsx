@@ -254,13 +254,11 @@ function UserPage() {
         }
     };
 
-    {
-        /* Change divs to utilize materialui */
-    }
     return (
         <>
             <div className="container">
-                <h3>Quick Quiz</h3>
+                <Typography variant="h3">Quick Quiz</Typography>
+                <br />
                 {showScore ? (
                     <div className="score-section">
                         You scored {score} out of {questions.length}
@@ -269,13 +267,19 @@ function UserPage() {
                     <>
                         <div className="question-section">
                             <div className="question-count">
-                                <span>Question {currentQuestion + 1}</span>/
-                                {questions.length}
+                                <Typography variant="h5">
+                                    Question {currentQuestion + 1}/
+                                    {questions.length}
+                                </Typography>
                             </div>
+                            <br />
                             <div className="question-text">
-                                {questions[currentQuestion].questionText}
+                                <Typography variant="h5">
+                                    {questions[currentQuestion].questionText}
+                                </Typography>
                             </div>
                         </div>
+                        <br />
                         <div
                             className="answer-section"
                             style={{
@@ -344,7 +348,6 @@ function UserPage() {
                             )}
                         </div>
 
-                        <br />
                         <br />
 
                         {!answerChosen && (
