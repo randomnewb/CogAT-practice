@@ -2,6 +2,102 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { makeStyles } from "@mui/material/styles";
+
+import {
+    Button,
+    Card,
+    CardContent,
+    CardMedia,
+    Grid,
+    Typography,
+} from "@mui/material";
+
+import { ArrowBack } from "@mui/material";
+
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//         flexGrow: 1,
+//     },
+//     paper: {
+//         padding: theme.spacing(2),
+//         textAlign: "center",
+//         color: theme.palette.text.secondary,
+//     },
+//     card: {
+//         minWidth: 275,
+//         maxWidth: 600,
+//         margin: "auto",
+//         marginTop: 50,
+//     },
+//     title: {
+//         fontSize: 14,
+//     },
+//     pos: {
+//         marginBottom: 12,
+//     },
+//     button: {
+//         margin: theme.spacing(1),
+//     },
+//     backButton: {
+//         margin: theme.spacing(1),
+//     },
+//     backButtonContainer: {
+//         textAlign: "left",
+//     },
+//     score: {
+//         textAlign: "center",
+//         margin: "auto",
+//         marginTop: 50,
+//         maxWidth: 600,
+//     },
+//     scoreText: {
+//         fontSize: 24,
+//         fontWeight: 500,
+//     },
+//     scoreNumber: {
+//         fontSize: 36,
+//         fontWeight: 500,
+//     },
+//     scoreExplanation: {
+//         fontSize: 18,
+//         fontWeight: 500,
+//     },
+//     answerOption: {
+//         margin: "auto",
+//         marginTop: 10,
+//         marginBottom: 10,
+//         maxWidth: 600,
+//     },
+//     answerOptionText: {
+//         fontSize: 18,
+//         fontWeight: 500,
+//     },
+//     nextButton: {
+//         margin: "auto",
+//         maxWidth: 600,
+//         marginTop: 10,
+//         marginBottom: 10,
+//     },
+//     answerExplanation: {
+//         fontSize: 18,
+//         fontWeight: 500,
+//         textAlign: "center",
+//     },
+//     answerExplanationText: {
+//         fontSize: 18,
+//         fontWeight: 500,
+//         textAlign: "center",
+//         marginTop: 10,
+//     },
+//     answerExplanationImage: {
+//         width: 200,
+//         height: 200,
+//         margin: "auto",
+//         marginTop: 10,
+//     },
+// }));
+
 const questions = [
     {
         id: 1,
@@ -92,13 +188,6 @@ const questions = [
     },
 ];
 
-{
-    /* Change button's text to "Next Question"
-                                    when the user has chosen an answer or to
-                                    "Finish Quiz" when the user is on the last
-                                    question. */
-}
-
 function UserPage() {
     const history = useHistory();
     // const user = useSelector((store) => store.user);
@@ -165,6 +254,9 @@ function UserPage() {
         }
     };
 
+    {
+        /* Change divs to utilize materialui */
+    }
     return (
         <>
             <div className="container">
@@ -256,13 +348,19 @@ function UserPage() {
                         <br />
 
                         {!answerChosen && (
-                            <button
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                style={{
+                                    margin: "10px",
+                                    width: "200px",
+                                }}
                                 onClick={() => {
                                     showExplanation();
                                     disableMouseEvents();
                                 }}>
                                 Choose Answer
-                            </button>
+                            </Button>
                         )}
 
                         {answerChosen && (
@@ -287,8 +385,13 @@ function UserPage() {
 
                                 <br />
                                 <br />
-
-                                <button
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    style={{
+                                        margin: "10px",
+                                        width: "200px",
+                                    }}
                                     onClick={() => {
                                         chooseAnswer();
 
@@ -315,7 +418,7 @@ function UserPage() {
                                               currentQuestion
                                           )
                                         : "Show Explanation"}
-                                </button>
+                                </Button>
                             </div>
                         )}
                     </>
@@ -323,7 +426,13 @@ function UserPage() {
             </div>
             {showScore && (
                 <div className="container">
-                    <button
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        style={{
+                            margin: "10px",
+                            width: "200px",
+                        }}
                         onClick={() => {
                             setCurrentQuestion(0);
                             setShowScore(false);
@@ -331,7 +440,7 @@ function UserPage() {
                             history.push("/user");
                         }}>
                         Restart Quiz
-                    </button>
+                    </Button>
                 </div>
             )}
         </>
