@@ -2,15 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-// Change last question's next answer button to "Finish Quiz"
-const changeLastQuestionButton = (questions, currentQuestionIndex) => {
-    if (currentQuestionIndex === questions.length - 1) {
-        return "Finish Quiz";
-    } else {
-        return "Next Question";
-    }
-};
-
 const questions = [
     {
         id: 1,
@@ -101,6 +92,13 @@ const questions = [
     },
 ];
 
+{
+    /* Change button's text to "Next Question"
+                                    when the user has chosen an answer or to
+                                    "Finish Quiz" when the user is on the last
+                                    question. */
+}
+
 function UserPage() {
     const history = useHistory();
     // const user = useSelector((store) => store.user);
@@ -157,6 +155,14 @@ function UserPage() {
 
     const hoverOutline = {
         outline: "orange solid 4px",
+    };
+
+    const changeLastQuestionButton = (questions, currentQuestionIndex) => {
+        if (currentQuestionIndex === questions.length - 1) {
+            return "Finish Quiz";
+        } else {
+            return "Next Question";
+        }
     };
 
     return (
@@ -281,6 +287,7 @@ function UserPage() {
 
                                 <br />
                                 <br />
+
                                 <button
                                     onClick={() => {
                                         chooseAnswer();
@@ -301,7 +308,14 @@ function UserPage() {
 
                                         setAnswer("");
                                         enableMouseEvents();
-                                    }}></button>
+                                    }}>
+                                    {answerChosen
+                                        ? changeLastQuestionButton(
+                                              questions,
+                                              currentQuestion
+                                          )
+                                        : "Show Explanation"}
+                                </button>
                             </div>
                         )}
                     </>
