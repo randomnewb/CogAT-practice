@@ -87,26 +87,86 @@ const questions = [
   },
   {
     id: 3,
-    questionText: "The iPhone was created by which company?",
+    questionText: "Which answer has the most toys?",
     questionExplanation:
-      "The iPhone was created by Apple, and more specifically, Steve Jobs.",
+      "The answer with the most toys has 9 toys in the picture. The other answers have less than 9 toys.",
     answerOptions: [
-      { id: 1, answerText: "Apple", isCorrect: true },
-      { id: 2, answerText: "Intel", isCorrect: false },
-      { id: 3, answerText: "Amazon", isCorrect: false },
-      { id: 4, answerText: "Microsoft", isCorrect: false },
+      {
+        id: 1,
+        answerText: "9",
+        isCorrect: true,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680658455/images/09_meeple_qqlti3.png",
+      },
+      {
+        id: 2,
+        answerText: "8",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680658455/images/08_meeple_nkgdqi.png",
+      },
+      {
+        id: 3,
+        answerText: "7",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680658455/images/07_meeple_ffmqk9.png",
+      },
+      {
+        id: 4,
+        answerText: "6",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680658455/images/06_meeple_ylscfp.png",
+      },
     ],
   },
   {
     id: 4,
-    questionText: "How many Harry Potter books are there?",
+    questionText: "Which answer is the best match?",
+    supplement_1:
+      "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659124/images/seedling_bmtjn5.png",
+    supplement_a:
+      "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659777/images/plain-arrow-right_sabipw.png",
+    supplement_2:
+      "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659124/images/sun_jxxjyn.png",
+    supplement_3:
+      "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659124/images/city-car_ipzyzp.png",
+    supplement_b:
+      "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659777/images/plain-arrow-right_sabipw.png",
+    supplement_4:
+      "https://res.cloudinary.com/dartlv0ee/image/upload/v1680663765/images/plain-square_kzyeys.png",
     questionExplanation:
-      "There are 7 Harry Potter books, authored by J. K. Rowling.",
+      "The best answer is the gasoline pump because the car needs gasoline to run just like a plant needs the sun to grow.",
     answerOptions: [
-      { id: 1, answerText: "1", isCorrect: false },
-      { id: 2, answerText: "4", isCorrect: false },
-      { id: 3, answerText: "6", isCorrect: false },
-      { id: 4, answerText: "7", isCorrect: true },
+      {
+        id: 1,
+        answerText: "teapot",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659124/images/teapot_lwdffm.png",
+      },
+      {
+        id: 2,
+        answerText: "flag",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659124/images/flying-flag_xf08id.png",
+      },
+      {
+        id: 3,
+        answerText: "duck",
+        isCorrect: false,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659124/images/duck_unchlq.png",
+      },
+      {
+        id: 4,
+        answerText: "gasoline pump",
+        isCorrect: true,
+        image:
+          "https://res.cloudinary.com/dartlv0ee/image/upload/v1680659124/images/gas-pump_p8qj2v.png",
+      },
     ],
   },
 ];
@@ -200,6 +260,61 @@ function UserPage() {
                   {questions[currentQuestion].questionText}
                 </Typography>
               </div>
+              {questions[currentQuestion].supplement_1 ? (
+                <div className="question-supplement">
+                  <img
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                    }}
+                    src={questions[currentQuestion].supplement_1}
+                    alt=""
+                  />
+                  <img
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                    }}
+                    src={questions[currentQuestion].supplement_a}
+                    alt=""
+                  />
+                  <img
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                    }}
+                    src={questions[currentQuestion].supplement_2}
+                    alt=""
+                  />
+                  <br />
+                  <img
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                    }}
+                    src={questions[currentQuestion].supplement_3}
+                    alt=""
+                  />
+                  <img
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                    }}
+                    src={questions[currentQuestion].supplement_b}
+                    alt=""
+                  />
+                  <img
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                    }}
+                    src={questions[currentQuestion].supplement_4}
+                    alt=""
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <br />
             <div
