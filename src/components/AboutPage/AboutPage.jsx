@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -9,7 +9,14 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>
+          This CogAT Quiz App helps kids practice for the CogAT assessment for
+          grade K and 1.
+        </p>
+        <p>
+          Caretakers and parents can review their child's score and support them
+          in their learning.
+        </p>
       </div>
     </div>
   );
