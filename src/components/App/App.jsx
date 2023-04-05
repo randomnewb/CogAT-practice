@@ -19,6 +19,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import QuizSelect from "../QuizSelect/QuizSelect";
+import QuizSettings from "../QuizSettings/QuizSettings";
 
 import "./App.css";
 
@@ -62,6 +63,10 @@ function App() {
 
           <ProtectedRoute exact path="/quiz">
             <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/settings">
+            <QuizSettings />
           </ProtectedRoute>
 
           <ProtectedRoute
